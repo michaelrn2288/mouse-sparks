@@ -14,9 +14,14 @@ opacity: 0;
 
 const StyledSparkle = styled.div`
 position: absolute;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background-color: rgb(255, 255, 0);
+box-shadow: inset 0 0 12px rgb(255,255,255),
+            0 0 12px rgb(255,255,0);
 left: ${props => props.mousePositionX}px;
 top: ${props => props.mousePositionY}px;
-font-weight: 700;
 animation-name: ${sparkleAnimation};
 animation-duration: 2.5s;
 animation-iteration-count: infinite;
@@ -29,7 +34,7 @@ export default function Sparkle(props) {
             mousePositionX={props.mousePositionX}
             mousePositionY={props.mousePositionY}
         >
-            sparkle
+
         </StyledSparkle>
     )
 }
