@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import Sparkle from './Components/Sparkle'
 
+import randomNumber from './Utils/randomNumber'
+
 
 export default function App() {
 
@@ -10,6 +12,10 @@ export default function App() {
     x: '',
     y: ''
   })
+  const [sparks, setSparks]= useState([
+    {spark: false}, {spark: false}, {spark: false}, {spark: false}, {spark: false},
+    {spark: false}, {spark: false}, {spark: false}, {spark: false}, {spark: false}
+  ])
 
   useEffect(() => {
     function getMousePosition(event) {
@@ -26,16 +32,23 @@ export default function App() {
       window.removeEventListener('mousemove', getMousePosition)
     }
   },[])
+
+useEffect(()=>{
+
+  setSparks(prevState => {
+    return prevState.map(element => ({spark: randomNumber(0, 1)}))
+  })
+},[])
   
   return (
     <div
       className='someDiv'
     >
 
-      <Sparkle
+      {sparks[0].spark === 1 && <Sparkle
       mousePositionX={mousePosition.x}
       mousePositionY={mousePosition.y}
-      />
+      />}
     </div>
   )
 }
