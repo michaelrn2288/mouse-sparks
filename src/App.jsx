@@ -25,6 +25,17 @@ export default function App() {
     { id: 9, exists: false }
   ])
 
+  const sparkElements = sparks.map(
+    spark => (
+      spark.exists &&
+      <Sparkle
+        key={spark.id}
+        mousePositionX={mousePosition.x}
+        mousePositionY={mousePosition.y}
+      />
+    )
+  )
+
   useEffect(() => {
     function getMousePosition(event) {
       setMousePosition(
@@ -43,23 +54,29 @@ export default function App() {
 
   useEffect(() => {
 
-    setSparks(prevState => {
-      return prevState.map(spark => ({
-        ...spark,
-        exists: fiftyPercentChanceTrue()
-      }))
-    })
+    function tryCreatingSpark(id) {
+      setSparks(prevState => {
+        return prevState.map(spark => (spark.id !== id ? spark : {
+          ...spark,
+          exists: fiftyPercentChanceTrue()
+        }))
+      })
+    }
+
+    for (let i = 0; i < 10; i++) {
+      setInterval(() => {
+        tryCreatingSpark(i)
+      }, 300 * (i + 1))
+    }
+
+    tryCreatingSpark(0)
   }, [])
 
   return (
     <div
       className='someDiv'
     >
-
-      {sparks[0].exists && <Sparkle
-        mousePositionX={mousePosition.x}
-        mousePositionY={mousePosition.y}
-      />}
+      {sparkElements}
     </div>
   )
 }
