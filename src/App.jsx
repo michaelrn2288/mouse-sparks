@@ -13,8 +13,8 @@ export default function App() {
     y: ''
   })
   const [sparks, setSparks]= useState([
-    {spark: false}, {spark: false}, {spark: false}, {spark: false}, {spark: false},
-    {spark: false}, {spark: false}, {spark: false}, {spark: false}, {spark: false}
+    false, false, false, false, false,
+    false, false, false, false, false
   ])
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function App() {
 useEffect(()=>{
 
   setSparks(prevState => {
-    return prevState.map(element => ({spark: randomNumber(0, 1)}))
+    return prevState.map(element => randomNumber(0, 1) === 1 ? true : false)
   })
 },[])
   
@@ -45,7 +45,7 @@ useEffect(()=>{
       className='someDiv'
     >
 
-      {sparks[0].spark === 1 && <Sparkle
+      {sparks[0] && <Sparkle
       mousePositionX={mousePosition.x}
       mousePositionY={mousePosition.y}
       />}
