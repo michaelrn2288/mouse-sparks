@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import Sparkle from './Components/Sparkle'
 
-import randomNumber from './Utils/randomNumber'
+import {randomNumber, fiftyPercentChanceTrue} from './Utils/random'
 
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
 useEffect(()=>{
 
   setSparks(prevState => {
-    return prevState.map(element => randomNumber(0, 1) === 1 ? true : false)
+    return prevState.map(element => fiftyPercentChanceTrue())
   })
 },[])
   

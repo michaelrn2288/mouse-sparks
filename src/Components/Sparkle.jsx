@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
-import randomNumber from '../Utils/randomNumber'
+import {randomNumber} from '../Utils/random'
 
 const sparkleAnimation = keyframes`
 from{
