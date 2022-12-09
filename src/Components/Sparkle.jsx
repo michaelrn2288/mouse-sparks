@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
+import randomNumber from '../Utils/randomNumber'
 
 const sparkleAnimation = keyframes`
 from{
@@ -21,7 +22,7 @@ background-color: rgb(255, 255, 0);
 box-shadow: inset 0 0 12px rgb(255,255,255),
             0 0 12px rgb(255,255,0);
 left: ${props => props.initialPosition.x}px;
-top: ${props => props.initialPosition}px;
+top: ${props => props.initialPosition.y}px;
 animation-name: ${sparkleAnimation};
 animation-duration: 2.5s;
 animation-iteration-count: infinite;
@@ -36,8 +37,8 @@ export default function Sparkle(props) {
 
     useEffect(() => {
         setInitialPosition({
-            x: props.mousePositionX,
-            y: props.mousePositionY
+            x: props.mousePositionX + randomNumber(-20, 20),
+            y: props.mousePositionY + randomNumber(0, 20)
         })
     }, [])
 
