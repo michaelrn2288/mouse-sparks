@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 import {randomNumber} from '../Utils/random'
 
-const sparkleAnimation = keyframes`
+const SparkAnimation = keyframes`
 from{
 transform: translateY(0);
 opacity: 1;
@@ -13,7 +13,7 @@ opacity: 0;
 }
 `
 
-const StyledSparkle = styled.div`
+const StyledSpark = styled.div`
 position: absolute;
 width: 30px;
 height: 30px;
@@ -23,12 +23,12 @@ box-shadow: inset 0 0 12px rgb(255,255,255),
             0 0 12px rgb(255,255,0);
 left: ${props => props.initialPosition.x}px;
 top: ${props => props.initialPosition.y}px;
-animation-name: ${sparkleAnimation};
+animation-name: ${SparkAnimation};
 animation-duration: 2.5s;
 animation-iteration-count: infinite;
 `
 
-export default function Sparkle(props) {
+export default function Spark(props) {
 
     const [initialPosition, setInitialPosition] = useState({
         x: '',
@@ -43,7 +43,7 @@ export default function Sparkle(props) {
     }, [])
 
     return (
-        <StyledSparkle
+        <StyledSpark
             mousePositionX={props.mousePositionX}
             mousePositionY={props.mousePositionY}
             initialPosition={initialPosition}

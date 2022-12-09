@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import Sparkle from './Components/Sparkle'
+import Spark from './Components/Spark'
 
 import { randomNumber, fiftyPercentChanceTrue } from './Utils/random'
 
@@ -28,7 +28,7 @@ export default function App() {
   const sparkElements = sparks.map(
     spark => (
       spark.exists &&
-      <Sparkle
+      <Spark
         key={spark.id}
         mousePositionX={mousePosition.x}
         mousePositionY={mousePosition.y}
