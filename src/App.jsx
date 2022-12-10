@@ -16,7 +16,7 @@ export default function App() {
 
   function createSparksArray() {
     let sparksArray = []
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 10; i++) {
       sparksArray.push({id: i, exists: false})
     }
     return sparksArray
@@ -51,19 +51,31 @@ export default function App() {
 
   useEffect(() => {
 
-    function tryCreatingSpark(id) {
+    function createSpark(id) {
       setSparks(prevState => {
         return prevState.map(spark => spark.id !== id ? spark : {
           ...spark,
-          exists: fiftyPercentChanceTrue()
+          exists: true
+        })
+      })
+    }
+
+    function removeSpark(id) {
+      setSparks(prevState => {
+        return prevState.map(spark => spark.id !== id ? spark : {
+          ...spark,
+          exists: false
         })
       })
     }
 
       sparks.forEach((element, index) => {
         setInterval(() => {
-          tryCreatingSpark(index)
+          createSpark(index)
         }, 100 * (index + 1))
+        setInterval(() => {
+          removeSpark(index)
+        }, 100 * (index + 1) + 100)
     })
 
   }, [])
