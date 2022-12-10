@@ -24,8 +24,8 @@ box-shadow: inset 0 0 12px rgb(255,255,255),
 left: ${props => props.initialPosition.x}px;
 top: ${props => props.initialPosition.y}px;
 animation-name: ${SparkAnimation};
-animation-duration: 2.5s;
-animation-iteration-count: infinite;
+animation-duration: 1s;
+animation-fill-mode: forwards;
 `
 
 export default function Spark(props) {
