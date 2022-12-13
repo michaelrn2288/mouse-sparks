@@ -12,12 +12,13 @@ export default function App() {
     x: '',
     y: ''
   })
+  const [mouseMoved, setMouseMoved] = useState(false)
   const [sparks, setSparks] = useState(createSparksArray())
 
   function createSparksArray() {
     let sparksArray = []
     for (let i = 0; i < 10; i++) {
-      sparksArray.push({id: i, exists: false})
+      sparksArray.push({ id: i, exists: false })
     }
     return sparksArray
   }
@@ -42,7 +43,10 @@ export default function App() {
         }
       )
     }
-    window.addEventListener('mousemove', getMousePosition)
+    window.addEventListener('mousemove', () => {
+      getMousePosition(event)
+      !mouseMoved && setMouseMoved(true)
+    })
 
     return () => {
       window.removeEventListener('mousemove', getMousePosition)
@@ -69,13 +73,13 @@ export default function App() {
       })
     }
 
-      sparks.forEach((element, index) => {
-        setInterval(() => {
-          createSpark(index)
-        }, 100 * (index + 1))
-        setInterval(() => {
-          removeSpark(index)
-        }, 100 * (index + 1) + 100)
+    sparks.forEach((element, index) => {
+      setInterval(() => {
+        createSpark(index)
+      }, 100 * (index + 1))
+      setInterval(() => {
+        removeSpark(index)
+      }, 100 * (index + 1) + 100)
     })
 
   }, [])
@@ -84,7 +88,7 @@ export default function App() {
     <div
       className='someDiv'
     >
-      {sparkElements}
+      {mouseMoved && sparkElements}
     </div>
   )
 }
