@@ -13,6 +13,7 @@ export default function App() {
     y: ''
   })
   const [mouseMoved, setMouseMoved] = useState(false)
+  const [mouseOutOfWindow, setMouseOutOfWindow] = useState(false)
   const [sparks, setSparks] = useState(createSparksArray())
 
   function createSparksArray() {
@@ -43,13 +44,26 @@ export default function App() {
         }
       )
     }
-    window.addEventListener('mousemove', () => {
+
+    function mouseMoveListener() {
       getMousePosition(event)
       !mouseMoved && setMouseMoved(true)
-    })
+    }
+
+    function mouseLeaveListener() {
+      setMouseOutOfWindow(true)
+    }
+
+    function mouseEnterListener() {
+      setMouseOutOfWindow(false)
+    }
+
+    window.addEventListener('mousemove', mouseMoveListener)
+    window.addEventListener('mouseout', mouseLeaveListener)
+    window.addEventListener('mouseover', mouseEnterListener)
 
     return () => {
-      window.removeEventListener('mousemove', getMousePosition)
+      window.removeEventListener('mousemove', mouseMoveListener)
     }
   }, [])
 
@@ -88,7 +102,7 @@ export default function App() {
     <div
       className='someDiv'
     >
-      {mouseMoved && sparkElements}
+      {mouseMoved && !mouseOutOfWindow && sparkElements}
     </div>
   )
 }
