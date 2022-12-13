@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import Spark from './Components/Spark'
-
-import { randomNumber, fiftyPercentChanceTrue } from './Utils/random'
-
 
 export default function App() {
 
