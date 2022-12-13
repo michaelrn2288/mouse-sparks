@@ -18,7 +18,7 @@ export default function App() {
 
   function createSparksArray() {
     let sparksArray = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       sparksArray.push({ id: i, exists: false })
     }
     return sparksArray
@@ -93,7 +93,7 @@ export default function App() {
       }, 100 * (index + 1))
       setInterval(() => {
         removeSpark(index)
-      }, 100 * (index + 1) + 100)
+      }, 100 * (index + 1) + 200)
     })
 
   }, [])
